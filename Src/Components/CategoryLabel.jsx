@@ -1,3 +1,3 @@
-export function CategoryLabel ({Category}) {
-    return <label>{Category}</label>
+export function CategoryLabel ({category}) {
+    return <label>{category}</label>
 }

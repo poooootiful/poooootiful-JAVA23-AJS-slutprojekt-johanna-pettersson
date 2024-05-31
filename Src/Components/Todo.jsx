@@ -1,15 +1,12 @@
 import { TaskLabel } from "./TaskLabel";
 import { CategoryLabel } from "./CategoryLabel";
 
-function Todo ({task}) {
-
-    const {Task,Category}=task
-
+function Todo () {
     return (
         <form>
             <h1>Todo</h1>
-            <TaskLabel Task ={Task}/>
-            <CategoryLabel Category = {Category}/>
+            <label>Task</label>
+            <label>Catergory</label>
             <input type="text" defaultValue="Name"/>
             <input type="submit" value="Asssign"/>
         </form>

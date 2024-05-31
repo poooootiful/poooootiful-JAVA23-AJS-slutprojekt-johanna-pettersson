@@ -5,44 +5,43 @@ import Inprogress from "./Inprogress";
 import Done from "./Done";
 import ErrorPage from "./Errors";
 import {Loading} from "./Loading"
-import {app} from "../utils/Firebase";
-import { getDatabase, ref, onValue, push } from "firebase/database";
-import { Todoprosses } from "./Todo";
-import { InprogressProsses } from "./Inprogress";
-import { DoneProsses } from "./Done";
-
-console.log(app)
-    const db = getDatabase (app);
-    console.log(db)
-    const Taskref = ref (db,'/Assignments')
-    console.log(Taskref);
-
-    let task1 = {}
-
-onValue (Taskref, snapshot=>{
-    const tasks = snapshot.val();
-    console.log(tasks)
-        task1 = {
-            Task: tasks.Task,
-            Category: tasks.Category,
-            Status:tasks.Status,
-            Assignedto:tasks.Assignedto
-        }
-    }
-)
+import { getDatabase, ref, onValue } from "firebase/database";
+import app from "../utils/Firebase";
 
 
+function App(){
 
+    const [data, setdata] = useState([])
 
-export function App(){
+    useEffect(() => {
+        const db = getDatabase(app)
+
+        const collectionref = ref(db,'Assignments')
+
+        const fetchData = () =>{
+            onValue(collectionref, (snapshot)=>{
+                const data = snapshot.val();
+
+                if(data) {
+                    const item = Object.values(data)
+                    setdata(item)
+                }
+            });
+        };
+        fetchData();
+    },[]);
+    
+
+    console.log(data)
 
     return (
         <>
             <SubmitForm/> 
-            <Todo task={task1}/>
+            <Todo/>
             <Inprogress/>
             <Done/>      
         </>
     )
 }
 
+export default App;

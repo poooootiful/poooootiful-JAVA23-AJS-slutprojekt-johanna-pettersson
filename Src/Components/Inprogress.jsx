@@ -1,8 +1,8 @@
 export function InprogressProsses(){
-    
+
 }
 
-function Inprogress (Tasktext,Category,Assigned) {
+function Inprogress () {
     return (
         <form>
             <h1>In Progress</h1>
