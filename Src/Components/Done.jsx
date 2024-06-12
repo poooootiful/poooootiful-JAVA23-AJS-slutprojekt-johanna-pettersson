@@ -2,15 +2,20 @@ export function DoneProsses () {
     
 }
 
-function Done (Tasktext, Category, Assigned){
+function Done ({task}){
+    console.log(task)
     return (
-        <form>
-            <h1>Done</h1>
-            <label>Tasktext</label>
-            <label>Category:</label>
-            <label>Assigned:</label>
-            <input type="submit" value="Remove"/>
-        </form>
+        <div>
+        {task.map((task, index) => (
+            <form key={index}>
+                <label>{task.Task}</label><br/>
+                <label>{task.Category}</label><br/>
+                <label>{task.Assignedto}</label><br/>
+                <input type="submit" value="Remove"/>
+            </form>
+
+        ))}
+    </div>
     )
     
 }

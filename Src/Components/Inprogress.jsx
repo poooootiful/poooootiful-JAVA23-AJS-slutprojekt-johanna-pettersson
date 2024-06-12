@@ -2,15 +2,19 @@ export function InprogressProsses(){
 
 }
 
-function Inprogress () {
+function Inprogress ({task}) {
+    console.log(task)
     return (
-        <form>
-            <h1>In Progress</h1>
-            <label>Tasktext</label>
-            <label>Category:</label>
-            <label>Assigned:</label>
-            <input type="submit" value="Done"/>
-        </form>
+        <div>
+            {task.map((task, index) => (
+                <form key={index}>
+                    <label>{task.Task}</label><br/>
+                    <label>{task.Category}</label><br/>
+                    <label>{task.Assignedto}</label><br/>
+                    <input type="submit" value="Done"/>
+                </form>
+            ))}
+        </div>
     )
 }
 

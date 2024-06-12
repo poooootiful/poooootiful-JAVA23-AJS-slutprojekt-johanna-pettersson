@@ -10,8 +10,10 @@ import app from "../utils/Firebase";
 
 
 function App(){
-
     const [data, setdata] = useState([])
+    const [todo, settodo] = useState([])
+    const [inProgress, setinprogress] = useState([])
+    const [done, setdone] = useState([])
 
     useEffect(() => {
         const db = getDatabase(app)
@@ -21,25 +23,31 @@ function App(){
         const fetchData = () =>{
             onValue(collectionref, (snapshot)=>{
                 const data = snapshot.val();
+                setdata(data)
 
                 if(data) {
-                    const item = Object.values(data)
-                    setdata(item)
+                    const items = Object.values(data)
+                    const todo = items.filter(task => task.Status === 'Todo');
+                    settodo(todo)
+                    const inProgress = items.filter(task => task.Status === 'InProgress');
+                    setinprogress(inProgress)
+                    const done = items.filter(task => task.Status === 'Done');
+                    setdone(done)
                 }
             });
         };
         fetchData();
     },[]);
     
-
-    console.log(data)
-
     return (
         <>
             <SubmitForm/> 
-            <Todo/>
-            <Inprogress/>
-            <Done/>      
+            <h1>Todo</h1>
+            <Todo task={todo}/>
+            <h1>InProgress</h1>
+            <Inprogress task={inProgress}/>
+            <h1>Done</h1>
+            <Done task = {done}/>      
         </>
     )
 }
