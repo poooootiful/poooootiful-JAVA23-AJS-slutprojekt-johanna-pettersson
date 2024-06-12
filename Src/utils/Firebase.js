@@ -44,11 +44,17 @@ export function newtask (task, category) {
 export function updatetask (name,key) {
   console.log(name)
   console.log(key)
-
   const db = getDatabase(app)
   const taskref = ref(db,'Assignments/'+key)
+  console.log(taskref)
+
   update(taskref, {
     Status:'InProgress',
-    Assignedto:name
-  })
+    Assignedto: name
+
+  }).then(() => {
+    console.log('Task updated successfully');
+  }).catch((error) => {
+    ErrorPage(error)
+  });
 }
