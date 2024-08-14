@@ -1,9 +1,9 @@
-export function InprogressProsses(){
+function InprogressProsses(){
 
 }
 
 function Inprogress ({task}) {
-    console.log(task)
+    
     return (
         <div>
             {task.map((task, index) => (

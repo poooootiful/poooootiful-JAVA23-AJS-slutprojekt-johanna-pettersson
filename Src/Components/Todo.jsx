@@ -1,39 +1,20 @@
 import { useEffect,useState } from "react";
-import { updatetask } from "../utils/Firebase";
+import {database} from "firebase.js"
+import { ref } from "firebase/database";
 
+const updatetask = (taskId, status, assignedto) => {
+    const taskref = database.ref ('Assignments/'+taskId)
+}
 
-function Todo ({task, onSubmit}) {
-    const [imput, setinput] = useState({})
-
-    function handlechange (event,index) {
-        setinput({
-            imput, [index]: event.target.value
-        })
-    }
-
-    function handleSubmit (event){
-        const key = task.snapshot.getkey()
-        const name = imput[index]
-        console.log(key)
-        updatetask (name, key)
-
-        if(onSubmit){
-            onSubmit ({})
-        }
-        setInputValues({
-            ...inputValues,
-            [index]: ''
-        });
-    }
-    
+function Todo ({task}) {   
     return (
         <div>
             {task.map((task, index) => (
-                <form key={index} onSubmit={handleSubmit}>
+                <form key={index}>
                     <label>{task.Task}</label><br/>
                     <label>{task.Category}</label><br/>
-                    <input type="text" value={imput[index] || ''} onChange={(event) => handlechange(event, index)} /><br/>
-                    <input type="submit" value="Asssign"/>
+                    <input type="text"/><br/>
+                    <input type="submit" value="Assign"/>
                 </form>
             ))}
         </div>

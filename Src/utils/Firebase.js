@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, push, ref, set, update } from "firebase/database";
+import { getDatabase, push, ref, set, update, database } from "firebase/database";
 import ErrorPage from "../Components/Errors";
 import { useEffect,useState } from "react";
 
@@ -17,8 +17,9 @@ const firebaseConfig = {
 
 
 const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 
-export default app;
+export default database;
 
 export function newtask (task, category) {
   
@@ -39,22 +40,4 @@ export function newtask (task, category) {
     }).catch((error) => {
       ErrorPage(error);
     })
-}
-
-export function updatetask (name,key) {
-  console.log(name)
-  console.log(key)
-  const db = getDatabase(app)
-  const taskref = ref(db,'Assignments/'+key)
-  console.log(taskref)
-
-  update(taskref, {
-    Status:'InProgress',
-    Assignedto: name
-
-  }).then(() => {
-    console.log('Task updated successfully');
-  }).catch((error) => {
-    ErrorPage(error)
-  });
 }
