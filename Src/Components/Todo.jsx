@@ -1,10 +1,9 @@
 import { useEffect,useState } from "react";
 import {database} from "firebase.js"
 import { ref } from "firebase/database";
+import Inprogress from "./Inprogress";
 
-const updatetask = (taskId, status, assignedto) => {
-    const taskref = database.ref ('Assignments/'+taskId)
-}
+
 
 function Todo ({task}) {   
     return (
