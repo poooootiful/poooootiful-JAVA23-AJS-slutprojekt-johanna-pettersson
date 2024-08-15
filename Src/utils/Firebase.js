@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, push, ref, set, update, database } from "firebase/database";
+import { getDatabase, push, ref, set, update, remove } from "firebase/database";
 import ErrorPage from "../Components/Errors";
 import { useEffect,useState } from "react";
+import Loading from "../Components/Loading";
 
 
 //Web app's Firebase configuration
@@ -17,9 +18,8 @@ const firebaseConfig = {
 
 
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
 
-export default database;
+export default app;
 
 export function newtask (task, category) {
   
@@ -36,8 +36,53 @@ export function newtask (task, category) {
       Status : 'Todo',
       Assignedto: 'none'
     }).then(()=>{
-
+      Loading
     }).catch((error) => {
       ErrorPage(error);
     })
+}
+
+export function updateToInprogrees (taskname, name) {
+
+  const id = getid(taskname);
+  const db = getDatabase(app)
+  const taskRef = ref(db, 'Assignments/'+id)
+
+  update (taskRef, {
+    Status:'InProgress',
+    Assignedto:name
+  }).then (()=>{
+    Loading
+  }).catch((error)=>{
+    ErrorPage(error)
+  })
+
+}
+
+export function updateToDone (taskname) {
+  const id = getid(taskname);
+  const db = getDatabase(app)
+  const taskRef = ref(db, 'Assignments/'+id)
+
+  update (taskRef, {
+    Status:'InProgress',
+    Assignedto:name
+  }).then (()=>{
+    Loading
+  }).catch((error)=>{
+    ErrorPage(error)
+  })
+}
+
+function getid (taskname) {
+    
+}
+
+export function removetask () {
+
+    const id = getid(taskname)
+    const db = getDatabase(app)
+    const removeRef= ref(db, 'Assignments/'+id)
+  
+    remove(removeRef)
 }
