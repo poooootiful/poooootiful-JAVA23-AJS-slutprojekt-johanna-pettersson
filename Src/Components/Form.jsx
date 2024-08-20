@@ -12,6 +12,7 @@ function SubmitForm ({onSubmit}){
     function handletxt (event){
         settask(event.target.value)
     }
+    
     function handlecat (event) {
         setcategory (event.target.value)
     }

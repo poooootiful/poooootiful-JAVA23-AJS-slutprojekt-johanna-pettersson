@@ -1,4 +1,4 @@
-export function DoneProsses () {
+function handleremove () {
     
 }
 
@@ -7,7 +7,7 @@ function Done ({task}){
     return (
         <div>
             {task.map((task, index) => (
-                <form key={index}>
+                <form key={index} onSubmit={handleremove}>
                     <label>{task.Task}</label><br/>
                     <label>{task.Category}</label><br/>
                     <label>{task.Assignedto}</label><br/>
