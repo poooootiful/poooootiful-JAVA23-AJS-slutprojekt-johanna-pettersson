@@ -15,7 +15,6 @@ const firebaseConfig = {
   messagingSenderId: "868382800850",
   appId: "1:868382800850:web:98b3afd9dcbda19262e60b"
 };  
-const {id, setid} = useState('')
 
 const app = initializeApp(firebaseConfig);
 
@@ -61,7 +60,7 @@ export async function getid(taskname) {
     }
 }
 
-export function updateToInprogrees (name) {
+export function updateToInprogrees (name, id) {
   const db = getDatabase(app)
   const taskRef = ref(db, 'Assignments/'+id)
 
@@ -76,7 +75,7 @@ export function updateToInprogrees (name) {
 
 }
 
-export function updateToDone (name) {
+export function updateToDone (id) {
   
   const db = getDatabase(app)
   const taskRef = ref(db, 'Assignments/'+id)
@@ -91,7 +90,7 @@ export function updateToDone (name) {
   })
 }
 
-export function removetask () {
+export function removetask (id) {
     const db = getDatabase(app)
     const removeRef= ref(db, 'Assignments/'+id)
   

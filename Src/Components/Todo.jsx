@@ -18,7 +18,7 @@ function handleInput (event) {
 }
 
 function handleSubmit (event) {
-    updateToInprogrees (name)
+    updateToInprogrees (name, id)
 }
 
 

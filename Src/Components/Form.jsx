@@ -28,9 +28,7 @@ function SubmitForm ({onSubmit}){
         settask(' ')
 
     }
-
     
-
     return (
         <form onSubmit={handleSubmit}>
             <label>Enter task:
