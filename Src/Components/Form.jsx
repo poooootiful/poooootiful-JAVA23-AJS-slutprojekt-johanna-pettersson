@@ -2,7 +2,7 @@ import { useState } from "react"
 import { root } from "../Main"
 import {Error} from "./Errors"
 import {Loading} from "./Loading"
-import { newtask } from "../utils/Firebase"
+import { newtask } from "../utils/Firebase.js"
 
 function SubmitForm ({onSubmit}){
 
@@ -28,7 +28,7 @@ function SubmitForm ({onSubmit}){
         settask(' ')
 
     }
-    
+
     return (
         <form onSubmit={handleSubmit}>
             <label>Enter task:

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, push, ref, set, update, remove, ref, get } from "firebase/database";
+import { getDatabase, push, ref, set, update, remove, get } from "firebase/database";
 import ErrorPage from "../Components/Errors";
 import { useEffect,useState } from "react";
 import Loading from "../Components/Loading";
@@ -42,6 +42,7 @@ export function newtask (task, category) {
 }
 
 export async function getid(taskname) {
+    console.log(taskname)
     const db = getDatabase(app);
     const assignmentref = ref(db,'Assignments')
 
@@ -51,6 +52,7 @@ export async function getid(taskname) {
         const tasks = snapshot.val();
         for (const id in tasks) {
           if (tasks[id].name === taskname) {
+            console.log (id)
             return id;
           }
         }
@@ -61,8 +63,11 @@ export async function getid(taskname) {
 }
 
 export function updateToInprogrees (name, id) {
+
+  console.log(id)
+
   const db = getDatabase(app)
-  const taskRef = ref(db, 'Assignments/'+id)
+  const taskRef = ref(db, 'Assignments/${id}')
 
   update (taskRef, {
     Status:'InProgress',
