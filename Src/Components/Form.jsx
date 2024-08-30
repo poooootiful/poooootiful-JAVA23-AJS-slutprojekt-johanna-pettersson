@@ -3,11 +3,13 @@ import { root } from "../Main"
 import {Error} from "./Errors"
 import {Loading} from "./Loading"
 import { newtask } from "../utils/Firebase.js"
+import { set } from "firebase/database"
 
 function SubmitForm ({onSubmit}){
 
     const [task, settask] = useState('')
     const [category, setcategory] = useState ('Backend')
+    const [count, setcount] = useState('1')
 
     function handletxt (event){
         settask(event.target.value)
@@ -18,8 +20,7 @@ function SubmitForm ({onSubmit}){
     }
 
     function handleSubmit (event){
-        
-        newtask(task,category)
+        newtask(task,category,count)
 
         if(onSubmit){
             onSubmit ({task,category})

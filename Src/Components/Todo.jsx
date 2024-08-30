@@ -10,7 +10,7 @@ function Todo ({task}) {
     function handleTaskName (event) {
         const tasknamevalue = event.target.value;
         settaskname (tasknamevalue)
-        const idvalue = await getid (tasknamevalue)
+        const idvalue = getid (tasknamevalue)
         setid (idvalue);
     }
 
@@ -19,7 +19,7 @@ function Todo ({task}) {
     }
 
     async function handleSubmit (event) {
-        await updateToInprogrees (name, id)
+        updateToInprogrees (name, id)
     }
 
     return (

@@ -6,7 +6,7 @@ import Done from "./Done";
 import ErrorPage from "./Errors";
 import {Loading} from "./Loading"
 import { getDatabase, ref, onValue } from "firebase/database";
-import app from "../utils/Firebase";
+import app from "../utils/Firebase.js";
 
 
 function App(){

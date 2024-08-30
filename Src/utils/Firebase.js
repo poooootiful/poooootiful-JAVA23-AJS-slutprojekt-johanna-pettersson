@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, push, ref, set, update, remove, get } from "firebase/database";
 import ErrorPage from "../Components/Errors";
-import { useEffect,useState } from "react";
 import Loading from "../Components/Loading";
 
 
@@ -17,7 +16,6 @@ const firebaseConfig = {
 };  
 
 const app = initializeApp(firebaseConfig);
-
 export default app;
 
 export function newtask (task, category) {

@@ -12,7 +12,6 @@ function Inprogress ({task}) {
     }
 
     function handleSubmit (event) {
-        console.log(id)
         updateToDone (id)
     }
 
