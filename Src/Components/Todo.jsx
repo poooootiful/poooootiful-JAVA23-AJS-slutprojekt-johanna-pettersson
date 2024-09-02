@@ -26,7 +26,7 @@ function Todo ({task}) {
         <div>
             {task.map((task, index) => (
                 <form key={index} onSubmit={handleSubmit}>
-                    <label onChange={handleTaskName}>{task.Task}</label><br/>
+                    <label>{task.Task}</label><br/>
                     <label>{task.Category}</label><br/>
                     <input type="text" onChange={handleInput}/><br/>
                     <input type="submit" value="Assign"/>
