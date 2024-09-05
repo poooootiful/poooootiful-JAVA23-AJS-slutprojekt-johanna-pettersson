@@ -3,29 +3,25 @@ import { getid, updateToInprogrees } from "../utils/Firebase.js";
 
 
 function Todo ({task}) {   
-    const [taskname, settaskname] = useState('')
     const [name, setname] = useState ('')
-    const [id,setid] = useState ('')
-
-    function handleTaskName (event) {
-        const tasknamevalue = event.target.value;
-        settaskname (tasknamevalue)
-        const idvalue = getid (tasknamevalue)
-        setid (idvalue);
-    }
+    const [taskkey, settaskkey] = useState ('')
 
     function handleInput (event) {
         setname (event.target.value)
     }
 
-    async function handleSubmit (event) {
-        updateToInprogrees (name, id)
+    function handlekey (event) {
+        settaskkey = (event.target.value)
+    }
+
+    async function handleSubmit () {
+        updateToInprogrees (name, taskkey)
     }
 
     return (
         <div>
-            {task.map((task, index) => (
-                <form key={index} onSubmit={handleSubmit}>
+            {task.map((task) => (
+                <form key={task.Id} onchange = {handlekey} onSubmit={handleSubmit}>
                     <label>{task.Task}</label><br/>
                     <label>{task.Category}</label><br/>
                     <input type="text" onChange={handleInput}/><br/>

@@ -24,10 +24,12 @@ export function newtask (task, category) {
     console.log(category)
     
     const db = getDatabase(app);
-    const assignmentref= ref(db,'Assignments')
+    const assignmentref= ref(db,'Assignments/')
     const newassignref = push(assignmentref);
+    const taskkey = newassignref.key
 
     set(newassignref, {
+      Id:taskkey,
       Task: task,
       Category: category,
       Status : 'Todo',
@@ -39,33 +41,11 @@ export function newtask (task, category) {
     })
 }
 
-export async function getid(taskname) {
-    console.log(taskname)
-    const db = getDatabase(app);
-    const assignmentref = ref(db,'Assignments')
 
-    try {
-      const snapshot = await get (assignmentref)
-      if (snapshot.exists()){
-        const tasks = snapshot.val();
-        for (const id in tasks) {
-          if (tasks[id].name === taskname) {
-            console.log (id)
-            return id;
-          }
-        }
-      }
-    }catch (error) {
-      ErrorPage(error)
-    }
-}
-
-export function updateToInprogrees (name, id) {
-
-  console.log(id)
+export function updateToInprogrees (name, key) {
 
   const db = getDatabase(app)
-  const taskRef = ref(db, 'Assignments/${id}')
+  const taskRef = ref(db, 'Assignments/'+key)
 
   update (taskRef, {
     Status:'InProgress',
@@ -78,10 +58,10 @@ export function updateToInprogrees (name, id) {
 
 }
 
-export function updateToDone (id) {
+export function updateToDone (key) {
   
   const db = getDatabase(app)
-  const taskRef = ref(db, 'Assignments/'+id)
+  const taskRef = ref(db, 'Assignments/'+key)
 
   update (taskRef, {
     Status:'Done'
@@ -93,9 +73,9 @@ export function updateToDone (id) {
   })
 }
 
-export function removetask (id) {
+export function removetask (key) {
     const db = getDatabase(app)
-    const removeRef= ref(db, 'Assignments/'+id)
+    const removeRef= ref(db, 'Assignments/'+key)
   
     remove(removeRef)
 }
