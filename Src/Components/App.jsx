@@ -3,8 +3,6 @@ import SubmitForm from "./Form";
 import Todo from "./Todo";
 import Inprogress from "./Inprogress";
 import Done from "./Done";
-import ErrorPage from "./Errors";
-import {Loading} from "./Loading"
 import { getDatabase, ref, onValue } from "firebase/database";
 import app from "../utils/Firebase.js";
 

@@ -1,29 +1,19 @@
-import { useState } from "react"
 import { removetask } from "../utils/Firebase.js";
 
 function Done ({task}){
 
-    const [taskname, settaskname] = useState('')
-    const [key, setkey] = useState ('')
-
-    function handleTaskName (event) {
-        settaskname = (event.target.value)
-    }
-    function handlekey (event) {
-        setkey = (event.target.value)
-    }
-
-    function handleremove (event) {
+    function handleSubmit (event,key) {
+        event.preventDefault();
         removetask (key)
     }
     
     return (
         <div>
-            {task.map((task, index) => (
-                <form key={task.Id} onchange = {handlekey} onSubmit={handleremove}>
-                    <label>{task.Task}</label><br/>
-                    <label>{task.Category}</label><br/>
-                    <label>{task.Assignedto}</label><br/>
+            {task.map((task) => (
+                <form key={task.Id} onSubmit={event=>handleSubmit(event, task.Id)}>
+                    <p>{task.Task}</p>
+                    <p>{task.Category}</p>
+                    <p>{task.Assignedto}</p>
                     <input type="submit" value="Remove"/>
                 </form>
             ))}

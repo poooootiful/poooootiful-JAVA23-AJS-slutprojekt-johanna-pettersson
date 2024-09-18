@@ -3,7 +3,6 @@ import { getDatabase, push, ref, set, update, remove, get } from "firebase/datab
 import ErrorPage from "../Components/Errors";
 import Loading from "../Components/Loading";
 
-
 //Web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyD0dY0ACE-kSTBK51XCoR_dwibTg8t-kwo",
@@ -14,10 +13,10 @@ const firebaseConfig = {
   messagingSenderId: "868382800850",
   appId: "1:868382800850:web:98b3afd9dcbda19262e60b"
 };  
-
 const app = initializeApp(firebaseConfig);
 export default app;
 
+//Add new task works perfecly
 export function newtask (task, category) {
   
     console.log(task)
@@ -41,11 +40,10 @@ export function newtask (task, category) {
     })
 }
 
-
+//update status to InProgress and add a name to Assignedto in task
 export function updateToInprogrees (name, key) {
-
   const db = getDatabase(app)
-  const taskRef = ref(db, 'Assignments/'+key)
+  const taskRef = ref(db, 'Assignments/'+ key)
 
   update (taskRef, {
     Status:'InProgress',
@@ -58,8 +56,8 @@ export function updateToInprogrees (name, key) {
 
 }
 
+//update status in a task to done
 export function updateToDone (key) {
-  
   const db = getDatabase(app)
   const taskRef = ref(db, 'Assignments/'+key)
 
@@ -73,6 +71,7 @@ export function updateToDone (key) {
   })
 }
 
+//removes a task from the database
 export function removetask (key) {
     const db = getDatabase(app)
     const removeRef= ref(db, 'Assignments/'+key)
