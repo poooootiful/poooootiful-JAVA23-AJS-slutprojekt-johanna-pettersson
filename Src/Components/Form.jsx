@@ -16,6 +16,7 @@ function SubmitForm ({onSubmit}){
     }
 
     function handleSubmit (event){
+        event.preventDefault();
         newtask(task,category,count)
 
         if(onSubmit){
