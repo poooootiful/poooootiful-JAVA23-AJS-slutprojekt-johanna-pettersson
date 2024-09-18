@@ -77,4 +77,10 @@ export function removetask (key) {
     const removeRef= ref(db, 'Assignments/'+key)
   
     remove(removeRef)
+    .then (()=>{
+      Loading
+    })
+    .catch((error)=>{
+      ErrorPage(error)
+    })
 }
