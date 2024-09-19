@@ -9,7 +9,7 @@ function Todo ({task}) {
         setname (event.target.value)
     }
 
-    async function handleSubmit (event, key) {
+    function handleSubmit (event, key) {
         event.preventDefault();
         updateToInprogrees (name, key)
     }

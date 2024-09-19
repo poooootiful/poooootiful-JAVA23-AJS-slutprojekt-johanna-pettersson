@@ -28,7 +28,7 @@ function SubmitForm ({onSubmit}){
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={event=>handleSubmit(event)}>
             <label>Enter task:
                 <input type="text" value={task} onChange= {handletxt}/>
             </label>
