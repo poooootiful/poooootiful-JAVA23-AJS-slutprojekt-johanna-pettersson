@@ -29,6 +29,7 @@ function SubmitForm ({onSubmit}){
     }
 
     return (
+        //github pages is being dumb with this
         <form onSubmit={event=>handleSubmit(event)}>
             <label>Enter task:
                 <input type="text" value={task} onChange= {handletxt}/>
