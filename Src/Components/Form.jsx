@@ -15,6 +15,7 @@ function SubmitForm ({onSubmit}){
         setcategory (event.target.value)
     }
 
+    //handles adding new tasks to the firabase database
     function handleSubmit (event){
         event.preventDefault();
         newtask(task,category,count)
